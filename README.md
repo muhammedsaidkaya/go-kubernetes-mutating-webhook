@@ -1,10 +1,10 @@
 
 ## K8s Admission Controller
 
-* **injects tcpdump container as a sidecar by object-label (tcpdump-enabled: "true") while creating PODs.**
-* **Written in Golang**
+* **Injects tcpdump container as a sidecar by object-label (tcpdump-enabled: "true") while creating PODs.**
+* **Written in Golang.**
 
-## Provision.sh
+## Apply commands on Provision.sh
 
 1. Docker Image Build (Go Server)
 2. Create CA and Client Certificates (CloudFlare SSL)
