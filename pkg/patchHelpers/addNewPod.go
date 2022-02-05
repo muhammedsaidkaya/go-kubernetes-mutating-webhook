@@ -1,14 +1,15 @@
-package main
+package patchHelpers
 
 import (
 	"context"
 	"fmt"
+	"github.com/muhammedkaya/tcpdump-webhook/pkg"
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
-func test() {
-	pods, err := clientSet.CoreV1().Pods("").List(context.TODO(), metav1.ListOptions{})
+func CreatePod() {
+	pods, err := pkg.ClientSet.CoreV1().Pods("").List(context.TODO(), metav1.ListOptions{})
 
 	if err != nil {
 		panic(err.Error())
@@ -26,19 +27,18 @@ func test() {
 			},
 		},
 	}
-	newPod_return, err := clientSet.CoreV1().Pods("default").Create(context.Background(), newPod, metav1.CreateOptions{})
+	newPod_return, err := pkg.ClientSet.CoreV1().Pods("default").Create(context.Background(), newPod, metav1.CreateOptions{})
 
 	if err != nil {
 		panic(err)
 	}
 	fmt.Println(newPod_return)
 
-	pods, err = clientSet.CoreV1().Pods("default").List(context.Background(), metav1.ListOptions{})
+	pods, err = pkg.ClientSet.CoreV1().Pods("default").List(context.Background(), metav1.ListOptions{})
 	if err != nil {
 		panic(err)
 	}
 	for _, pod := range pods.Items {
 		fmt.Println(pod.Name)
 	}
-
 }
